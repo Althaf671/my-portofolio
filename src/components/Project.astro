@@ -1,0 +1,38 @@
+---
+const items = [
+    { 
+        title: "Ace Train - Modern Gym", 
+        desc: "Landing page gym modern dengan estetika minimalis, performa kencang, dan navigasi intuitif bagi komunitas elit.", 
+        image: "/ace-train.webp",
+        link: "https://ace-train-landing-page.vercel.app",
+        status: "Finished",
+        availability: "available"
+    },
+    { 
+        title: "CORE Platform", 
+        desc: "Centralized Operational Resource Education Platform - CORE Platform. Aplikasi ini dibangun untuk sistem back office sekolah atau platform pendidikan mana pun. Aplikasi ini terdiri dari manajemen akademik, karyawan, hingga siswa dengan sistem keamanan hireraki berbasis role (RBAC) dan berbasis hak akses (PBAC).",
+        image: "/sims.webp",
+        link: "",
+        status: "On Progress",
+        availability: "unavailable"
+    },
+];
+---
+<section id="project" style="width: 95%;">
+    <h2 style="border-bottom: 1px solid grey; padding-bottom: 0.75rem;"># My Projects</h2>
+    {items.map((item) => (
+        <div style="display: flex; flex-direction: column;">
+            <p style="font-size: 20px; border-left: 2px solid grey; padding-left: 1rem;">{item.title}</p>
+            <img src={item.image} alt={item.title} />
+            <p style="font-size: 16px; opacity: 50%;">Status: {item.status}</p>
+            <p style="font-size: 18px; text-align: justify; line-height: 28px; opacity: 80%; margin-top: -5px;">{item.desc}</p>
+            <button style="width: fit-content; height: 35px; margin-left: auto; font-size: 16px;">
+                <a href={item.availability === "available" ? item.link : "javascript:void(0)"} 
+                target={item.availability === "available" ? "_blank" : "_self"}
+                style={item.availability === "unavailable" ? "cursor: not-allowed; opacity: 0.5;" : ""}>
+                    {item.availability === "available" ? "Demo" : "Private"}
+                </a>
+            </button>
+        </div>
+    ))}
+</section>
