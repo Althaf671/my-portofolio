@@ -4,7 +4,7 @@ const items = [
         title: "Ace Train - Modern Gym", 
         desc: "Landing page gym modern dengan estetika minimalis, performa kencang, dan navigasi intuitif bagi komunitas elit.", 
         image: "/ace-train.webp",
-        link: "https://ace-train-landing-page.vercel.app",
+        link: "https://ace-train.netlify.app",
         status: "Finished",
         availability: "available"
     },
@@ -26,10 +26,10 @@ const items = [
             <img src={item.image} alt={item.title} />
             <p style="font-size: 16px; opacity: 50%;">Status: {item.status}</p>
             <p style="font-size: 18px; text-align: justify; line-height: 28px; opacity: 80%; margin-top: -5px;">{item.desc}</p>
-            <button style="width: fit-content; height: 35px; margin-left: auto; font-size: 16px;">
+            <button style="width: fit-content; padding-inline: 0.75rem; height: 35px; margin-left: auto; font-size: 16px; background-color: rgb(0, 123, 255); color; border: none; border-radius: 2px;">
                 <a href={item.availability === "available" ? item.link : "javascript:void(0)"} 
                 target={item.availability === "available" ? "_blank" : "_self"}
-                style={item.availability === "unavailable" ? "cursor: not-allowed; opacity: 0.5;" : ""}>
+                style={item.availability === "unavailable" ? "cursor: not-allowed; color: white; text-decoration: none;" : "color: white; text-decoration: none;"}>
                     {item.availability === "available" ? "Demo" : "Private"}
                 </a>
             </button>
