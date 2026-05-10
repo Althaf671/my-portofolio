@@ -1,33 +1,38 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>My Portfolio</title>
-	</head>
-	<body>
-		<div class="translate-container">
-			<div id="google_translate_element"></div>
-		</div>
-		
-		<slot />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <title>My Portfolio</title>
+    </head>
+    <body>
+        <div class="translate-wrapper" style="margin-left: auto;">
+            <div class="icon-ui">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                    <path d="M18.5 10l4.4 11h-2.155l-1.201-3h-4.09l-1.199 3h-2.154L16.5 10h2zM10 2v2h6v2h-1.968a18.222 18.222 0 0 1-3.62 6.301 14.864 14.864 0 0 0 2.336 1.707l-.751 1.878A17.015 17.015 0 0 1 9 13.725a16.676 16.676 0 0 1-6.201 3.548l-.536-1.929a14.7 14.7 0 0 0 5.327-3.042A18.078 18.078 0 0 1 4.767 8h2.24A16.032 16.032 0 0 0 9 10.877a16.165 16.165 0 0 0 2.91-4.876L2 6V4h6V2h2zm7.5 10.885L16.253 16h2.492L17.5 12.885z"></path>
+                </svg>
+            </div>
+            <div id="google_translate_element"></div>
+        </div>
+        
+        <slot />
 
-		<script is:inline>
-			function googleTranslateElementInit() {
-				new google.translate.TranslateElement({
-					pageLanguage: 'id',
-				}, 'google_translate_element');
-			}
-		</script>
-		<script is:inline src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-	</body>
+        <script is:inline>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'id',
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+        </script>
+        <script is:inline src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </body>
 </html>
 
 <style is:global>
-
     iframe.skiptranslate, 
     .goog-te-banner-frame, 
     #goog-gt-tt, 
@@ -36,28 +41,31 @@
         visibility: hidden !important;
     }
 
-    html {
-        top: 0px !important;
-    }
-
-    body {
+    html, body {
         top: 0px !important;
         position: static !important;
     }
 
-    .goog-te-gadget .goog-te-combo {
-        background-color: #1a1a1a !important; 
-        color: white !important;
-        border: 1px solid #333 !important;
-        padding: 5px;
-        border-radius: 4px;
-        outline: none;
-        font-family: 'Inter', sans-serif;
+    .goog-te-gadget {
+        font-size: 0 !important;
+        color: transparent !important;
     }
 
-    .goog-te-gadget {
-        color: transparent !important;
-        font-size: 0 !important;
+    .goog-te-gadget a {
+        display: none !important;
+        pointer-events: none !important;
+    }
+
+    .goog-te-gadget .goog-te-combo {
+        margin: 0 !important;
+        opacity: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        cursor: pointer !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 10 !important;
     }
 
     .goog-text-highlight {
@@ -67,23 +75,47 @@
 </style>
 
 <style>
-    html,
-    body {
-		position: relative;
+    html, body {
         margin: 0;
         width: 100%;
         height: 100%;
         background-color: black;
         color: white;
-        padding: 1rem 1rem;
         font-family: 'inter';
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        padding: 1rem;
         gap: 1.5rem;
+        box-sizing: border-box;
     }
-	
-	.translate-container {
-		position: absolute;
-	}
+
+    .translate-wrapper {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        z-index: 9999;
+        overflow: hidden; 
+    }
+
+    .icon-ui {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        pointer-events: none; 
+    }
+
+    .icon-ui svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    #google_translate_element {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+    }
 </style>
